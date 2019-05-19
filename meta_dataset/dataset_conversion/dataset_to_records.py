@@ -34,7 +34,7 @@ from __future__ import print_function
 
 import binascii
 import collections
-import _pickle as pkl
+import pickle as pkl
 import io
 import json
 import operator
