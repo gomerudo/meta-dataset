@@ -954,7 +954,7 @@ class VGGFlowerConverter(DatasetConverter):
 
     imagelabels_path = os.path.join(self.data_root, 'imagelabels.mat')
     with tf.gfile.GFile(imagelabels_path, 'r') as f:
-      labels = loadmat(f)['labels'][0]
+      labels = loadmat(f.name, appendmat=False)['labels'][0]
     filepaths = collections.defaultdict(list)
     for i, label in enumerate(labels):
       filepaths[label - 1].append(
@@ -1545,7 +1545,7 @@ class FungiConverter(DatasetConverter):
       original_val = json.load(f)
 
     # The categories (classes) for train and validation should be the same.
-    assert cmp(original_train['categories'], original_val['categories']) == 0
+    assert original_train['categories'] == original_val['categories']
     class_labels = ([c['id'] for c in original_train['categories']])
     # Assert no repeated categories
     assert len(class_labels) == len(set(class_labels))
