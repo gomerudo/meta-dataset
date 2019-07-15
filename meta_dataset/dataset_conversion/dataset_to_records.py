@@ -1355,7 +1355,7 @@ class MSCOCOConverter(DatasetConverter):
       return image_crop, class_id
 
     class_tf_record_writers = []
-    for class_id in xrange(self.num_all_classes):
+    for class_id in range(self.num_all_classes):
       output_path = os.path.join(
           self.records_path, self.dataset_spec.file_pattern.format(class_id))
       class_tf_record_writers.append(tf.python_io.TFRecordWriter(output_path))
